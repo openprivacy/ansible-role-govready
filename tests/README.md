@@ -82,9 +82,9 @@ Note that the remote sites don't need govready nor the scap-security-guide, but 
 
 _Note: The process for remediation is in flux and `govready fix` no longer works. Currently we are using the [simple-harden](https://galaxy.ansible.com/CivicActions/simple-harden/) role which is still being tested._
 
-OpenSCAP remediation:
+OpenSCAP remediation works, but appears to kill SSH access, making the site *very* secure:
 ```
-oscap-ssh sudo oscap-user@192.168.56.102 22 xccdf eval --remediate --profile xccdf_org.ssgproject.content_profile_stig-rhel7-server-upstream --results scans/remediation-results.xml --fetch-remote-resources scap/ssg-centos7-ds.xml
+oscap-ssh sudo oscap-user@192.168.56.102 22 xccdf eval --remediate --fetch-remote-resources --profile xccdf_org.ssgproject.content_profile_stig-rhel7-server-upstream --results scans/remediation.xml --report scans/remediation.html scap/ssg-centos7-ds.xml
 ```
 
 For testing with your vagrant boxes created above, first install the `simple-harden` role:
